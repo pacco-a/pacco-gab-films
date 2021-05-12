@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacco Gab Films</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    {{>header}}
+
+    <h2>Ajouter un film</h2>
+    <form action="/movies" method="post">
+        <div>
+            <input type="text" name="name" placeholder="nom de film">
+        </div>
+        <div>
+            <input type="date" name="date" placeholder="date de visionnage">
+        </div>
+        <div>
+            <label for="author">auteur</label>
+            <select name="author">
+                <option value="pacco">Pacco</option>
+                <option value="gab">Gab</option>
+            </select>
+        </div>
+        <button type="submit">Ajouter</button>
+    </form>
+
+
+    <h2>Liste des films</h2>
+    <ul>
+        {{#each movies }}
+        {{>movie movie=this}}
+        {{/each}}
+    </ul>
+
+</body>
+</html>

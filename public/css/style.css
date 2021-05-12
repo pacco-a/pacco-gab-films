@@ -1,0 +1,33 @@
+html {
+    background-color: rgb(177, 177, 177);
+}
+
+body {
+    background-color: rgb(226, 226, 226);
+    max-width: 800px;
+    margin: auto;
+    margin-top: 10px;
+    padding: 5px 10px;
+}
+
+/* movie */
+
+.movie-elem.pacco {
+    background-color: rgb(122, 122, 165);
+    color: rgb(214, 214, 214);
+    padding-left: 5px;
+    margin-bottom: 5px;
+}
+
+.movie-elem.gab {
+    background-color: rgb(211, 138, 160);
+    color: rgb(0, 0, 0);
+}
+
+.movie-elem.gab,
+.movie-elem.pacco {
+    padding: 5px 5px;
+    margin-bottom: 5px;
+    list-style: none;
+    font-size: 20px;
+}
