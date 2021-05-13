@@ -31,3 +31,10 @@ body {
     list-style: none;
     font-size: 20px;
 }
+
+/* movie form */
+
+form input {
+    width: 150px;
+    margin-bottom: 5px;
+}
