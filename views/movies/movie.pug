@@ -1,0 +1,32 @@
+extends /layout.pug
+
+block content
+
+    form(action="/movies/update/" + movie.id, method="post", id="update-movie-form")
+        div
+            input(type="text", name="name", value=movie.name)
+        div
+            - var month = movie.date.getMonth() > 9 ? "" + movie.date.getMonth() + 1 : "0" + (movie.date.getMonth() + 1)
+            - var day = movie.date.getDate() > 9 ? "" + movie.date.getDate() : "0" + movie.date.getDate()
+            
+            input(
+                type="date",
+                name="date",
+                value= movie.date.getFullYear() + "-" + month + "-" + day)
+        div
+            label(for="author") 
+            select(name="author")
+                case movie.author
+                    when "pacco"
+                        option(value="pacco") Pacco
+                        option(value="gab") Gab
+                    when "gab"
+                        option(value="gab") Gab
+                        option(value="pacco") Pacco
+                    default
+                        option(value="gab") Gab
+                        option(value="pacco") Pacco
+        button(type="submit") Valider changements
+
+    a(href="/movies/home") Retour aux films
+                

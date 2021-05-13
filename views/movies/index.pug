@@ -1,0 +1,28 @@
+extends /layout.pug
+
+mixin movieBlock(movie)
+    li(class="movie-elem " + movie.author)
+        a(href="/movies/" + movie.id).
+            #{movie.name}
+            | #{movie.date.getDate()}
+            | /#{movie.date.getMonth() + 1}/#{movie.date.getFullYear()} 
+            | #{movie.author}
+
+
+block content
+    h2 Ajouter un film
+        form(action="/movies" method="post")
+            div 
+                input(type="text" name="name" placeholder="nom du film")
+            div
+                input(type="date" name="date" value="2021-05-13")
+            div
+                label(for="author") 
+                select(name="author")
+                    option(value="pacco") Pacco
+                    option(value="gab") Gab
+        
+    h2 Liste des films 
+    ul 
+        each movie in movies
+            +movieBlock(movie)
