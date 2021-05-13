@@ -21,11 +21,19 @@ async function bootstrap() {
     // });
 
     hbs.registerPartials(join(__dirname, "..", "..", "views/partials"), null);
+    makeHbsHelpers(hbs);
 
-    //#region hbs custom helpers
+    // listen
+    await app.listen(3000);
+}
 
+function makeHbsHelpers(hbsObj: any) {
     // format date
-    hbs.registerHelper("date", (vDate: Date): string => {
+    /**
+     * le mode : 1 renvoi le format français normal
+     * le mode : 2 renvoi un format compris par html form
+     */
+    hbsObj.registerHelper("date", (mode: number, vDate: Date): string => {
         let date = vDate.getDate().toString();
         let month = (vDate.getMonth() + 1).toString();
         if (date.length <= 1) {
@@ -34,26 +42,18 @@ async function bootstrap() {
         if (month.length <= 1) {
             month = `0${month}`;
         }
-        return `${date}/${month}/${vDate.getFullYear()}`;
+        switch (mode) {
+            case 1:
+                return `${date}/${month}/${vDate.getFullYear()}`;
+                break;
+            case 2:
+                return `${vDate.getFullYear()}-${month}-${date}`;
+                break;
+            default:
+                return `Incorrect mode`;
+                break;
+        }
     });
-
-    hbs.registerHelper(
-        "testAuthor",
-        (movieDTO: MovieDTO, authorToTest: string): Boolean => {
-            console.log(movieDTO.author);
-            console.log(authorToTest);
-
-            if (movieDTO.author === authorToTest) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-    );
-
-    //#endregion
-
-    // listen
-    await app.listen(3000);
 }
+
 bootstrap();

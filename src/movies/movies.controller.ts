@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, Redirect, Render } from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    Get,
+    Param,
+    Post,
+    Redirect,
+    Render,
+} from "@nestjs/common";
+import { UpdateDateColumn } from "typeorm";
 import MovieDTO from "./dtos/movie-dto";
 import Movie from "./movies.entity";
 import { MoviesService } from "./movies.service";
@@ -27,6 +36,22 @@ export class MoviesController {
         const movies = await this.moviesService.getAllMovies();
         return {
             movies,
+        };
+    }
+
+    @Post("/update/:id")
+    public async update(
+        @Body() movieDTO: MovieDTO,
+        @Param("id") id: number,
+    ): Promise<Movie> {
+        return this.moviesService.updateMovie(id, movieDTO);
+    }
+
+    @Get(":id")
+    @Render("movies/movie")
+    public async getMovieHome(@Param("id") id: number) {
+        return {
+            movie: await this.moviesService.getOneMovie(id),
         };
     }
 }

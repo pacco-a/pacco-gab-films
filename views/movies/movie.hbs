@@ -1,0 +1,36 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{movie.name}}</title>
+    </head>
+    <body>
+
+        <form action="/movies/update" method="post">
+            <div>
+                <input type="text" name="moviename" value="{{movie.name}}" />
+
+            </div>
+
+            <div>
+
+                <label for="author">auteur</label>
+                <select name="author">
+                    <option value="pacco">Pacco</option>
+                    <option value="gab">Gab</option>
+                </select>
+            </div>
+
+            <div>
+
+                <input
+                    type="date"
+                    name="moviedate"
+                    value="{{date 2 movie.date}}"
+                />
+            </div>
+        </form>
+
+    </body>
+</html>
