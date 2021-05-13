@@ -7,7 +7,7 @@ import { MoviesService } from "./movies.service";
 export class MoviesController {
     constructor(private moviesService: MoviesService) {}
     @Post()
-    @Redirect("/films/movies/home")
+    @Redirect("/movies/home")
     public async create(@Body() movieDTO: MovieDTO): Promise<Movie> {
         return this.moviesService.createMovie(
             movieDTO.name,
