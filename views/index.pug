@@ -1,0 +1,12 @@
+extends layout.pug
+include testinc.pug
+
+block csslinks
+    link(rel="stylesheet", href="css/style.css")
+
+block content
+    p Mon contenu fonctionne ? ):
+
+    p #{today.getDate()}/#{today.getMonth()}/#{today.getYear()}
+
+    +itsme(me)

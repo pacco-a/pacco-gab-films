@@ -35,6 +35,7 @@ export class MoviesController {
     public async getMoviesHome() {
         const movies = await this.moviesService.getAllMovies();
         return {
+            title: "les films",
             movies,
         };
     }

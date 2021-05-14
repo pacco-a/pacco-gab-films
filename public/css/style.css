@@ -38,3 +38,11 @@ form input {
     width: 150px;
     margin-bottom: 5px;
 }
+
+#update-movie-form input,
+#update-movie-form select,
+#update-movie-form button{
+    font-size: 20px;
+    min-width: 300px;
+    margin-bottom: 10px;
+}
