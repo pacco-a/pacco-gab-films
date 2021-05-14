@@ -1,13 +1,13 @@
 import {
     Body,
     Controller,
+    Delete,
     Get,
     Param,
     Post,
     Redirect,
     Render,
 } from "@nestjs/common";
-import { UpdateDateColumn } from "typeorm";
 import MovieDTO from "./dtos/movie-dto";
 import Movie from "./movies.entity";
 import { MoviesService } from "./movies.service";
@@ -41,6 +41,7 @@ export class MoviesController {
     }
 
     @Post("/update/:id")
+    @Redirect("/movies/home")
     public async update(
         @Body() movieDTO: MovieDTO,
         @Param("id") id: number,
@@ -54,5 +55,10 @@ export class MoviesController {
         return {
             movie: await this.moviesService.getOneMovie(id),
         };
+    }
+
+    @Delete(":id")
+    public async deleteMovie(@Param("id") id: number): Promise<Movie> {
+        return this.moviesService.deleteOneMovie(id);
     }
 }

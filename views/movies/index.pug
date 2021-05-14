@@ -4,9 +4,11 @@ mixin movieBlock(movie)
     li(class="movie-elem " + movie.author)
         a(href="/movies/" + movie.id).
             #{movie.name}
-            | #{movie.date.getDate()}
-            | /#{movie.date.getMonth() + 1}/#{movie.date.getFullYear()} 
-            | #{movie.author}
+            #{movie.date.getDate()}
+            /#{movie.date.getMonth() + 1}/#{movie.date.getFullYear()} 
+            #{movie.author}
+        button(class="del-movie-btn " + movie.id) Supprimer
+                
 
 
 block content
@@ -21,8 +23,12 @@ block content
                 select(name="author")
                     option(value="pacco") Pacco
                     option(value="gab") Gab
+            button(type="submit") Ajouter
         
     h2 Liste des films 
     ul 
         each movie in movies
             +movieBlock(movie)
+
+block jslinks
+    script(src="/js/movie.js") 

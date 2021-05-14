@@ -6,16 +6,6 @@ export class AppController {
     constructor(private readonly appService: AppService) {}
 
     @Get()
-    // @Redirect("/movies/home")
-    @Render("index")
-    getHello() {
-        return {
-            title: "Index",
-            me: {
-                name: "Pacco",
-                age: 20,
-            },
-            today: new Date(Date.now()),
-        };
-    }
+    @Redirect("/movies/home")
+    root() {}
 }

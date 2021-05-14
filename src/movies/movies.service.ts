@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { DeleteResult, Repository } from "typeorm";
 import MovieDTO from "./dtos/movie-dto";
 import Movie from "./movies.entity";
 
@@ -55,7 +55,21 @@ export class MoviesService {
         }
     }
 
+    /**
+     * Renvoi un seul film selon un id
+     */
     async getOneMovie(id: number): Promise<Movie> {
         return this.movieRepository.findOneOrFail(id);
+    }
+
+    /**
+     * Supprime un seul film selon un id
+     */
+    async deleteOneMovie(id: number): Promise<Movie> {
+        const movieToDelete: Movie = await this.movieRepository.findOneOrFail(
+            id,
+        );
+
+        return this.movieRepository.remove(movieToDelete);
     }
 }
